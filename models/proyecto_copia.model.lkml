@@ -16,7 +16,7 @@ datagroup: datagroup_probandoando{
   label: "soy una etiqueta"
   description: "probando datagroup"
   max_cache_age: "5 hours"
-  sql_trigger: SELECT max(id) FROM my_tablename ;;
+  sql_trigger: SELECT max(id) FROM  inventory_items;;
 }
 
 persist_with: datagroup_probandoando
