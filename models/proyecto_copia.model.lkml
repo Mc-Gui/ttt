@@ -12,7 +12,14 @@ datagroup: proyecto_copia_default_datagroup {
   max_cache_age: "1 hour"
 }
 
-persist_with: proyecto_copia_default_datagroup
+datagroup: datagroup_probandoando{
+  label: "soy una etiqueta"
+  description: "probando datagroup"
+  max_cache_age: "5 hours"
+  sql_trigger: SELECT max(id) FROM my_tablename ;;
+}
+
+persist_with: datagroup_probandoando
 
 # Explores allow you to join together different views (database tables) based on the
 # relationships between fields. By joining a view into an Explore, you make those
