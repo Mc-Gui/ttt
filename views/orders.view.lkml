@@ -34,7 +34,7 @@ view: orders {
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Status" in Explore.
 
-  dimension: status {
+  dimension: statusss {
     type: string
     sql: ${TABLE}.status ;;
   }
@@ -49,6 +49,7 @@ view: orders {
     # hidden: yes
     sql: ${TABLE}.user_id ;;
   }
+
 
   # A measure is a field that uses a SQL aggregate function. Here are count, sum, and average
   # measures for numeric dimensions, but you can also add measures of many different types.

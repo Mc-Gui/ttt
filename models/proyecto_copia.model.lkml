@@ -3,7 +3,7 @@ connection: "thelook"
 
 # include all the views
 include: "/views/**/*.view"
-
+include: "/**/**/*.view"
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.
 
@@ -16,10 +16,15 @@ datagroup: datagroup_probandoando{
   label: "soy una etiqueta"
   description: "probando datagroup"
   max_cache_age: "5 hours"
+  sql_trigger: SELECT (EXTRACT(MONTH FROM DATEADD( day, 1, GETDATE())));;
+}
+
+datagroup: envio_ultimo_dia_mes{
   sql_trigger: SELECT max(id) FROM  inventory_items;;
 }
 
 persist_with: datagroup_probandoando
+#persist_for: "1 hour"
 
 # Explores allow you to join together different views (database tables) based on the
 # relationships between fields. By joining a view into an Explore, you make those
@@ -85,3 +90,8 @@ explore: product_facts {
 explore: products {}
 
 explore: users {}
+
+explore: test1{}
+explore:  test2{}
+explore: eje2 {}
+explore: filtrofiltro {}
