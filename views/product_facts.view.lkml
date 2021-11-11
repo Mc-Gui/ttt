@@ -17,6 +17,7 @@ view: product_facts {
 
   dimension: name {
     type: string
+    ###
     sql: ${TABLE}.name ;;
   }
 
