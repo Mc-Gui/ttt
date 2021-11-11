@@ -34,6 +34,7 @@ view: product_facts {
   measure: count {
     type: count
     drill_fields: [name, products.id, products.item_name]
+    ho
   }
 }
 
