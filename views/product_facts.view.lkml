@@ -24,6 +24,7 @@ view: product_facts {
     type: number
     # hidden: yes
     sql: ${TABLE}.product_id ;;
+    ###
   }
 
   # A measure is a field that uses a SQL aggregate function. Here are count, sum, and average
