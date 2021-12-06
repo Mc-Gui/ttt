@@ -72,7 +72,7 @@ explore: order_items {
  #  filters: [orders.statusss: "complete"]
   #}
 
-  sql_always_where: ${orders.statusss}="complete" ;;
+  sql_always_where: ${orders.statusss}='complete' ;;
 }
 
 explore: orders {
