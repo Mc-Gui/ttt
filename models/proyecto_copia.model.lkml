@@ -68,11 +68,11 @@ explore: order_items {
     relationship: many_to_one
   }
 
- always_filter: {
-   filters: [orders.statusss: "complete"]
-  }
+# always_filter: {
+ #  filters: [orders.statusss: "complete"]
+  #}
 
- # sql_always_where: ${orders.statusss}:"complete" ;;
+  sql_always_where: ${orders.statusss}:"complete" ;;
 }
 
 explore: orders {
