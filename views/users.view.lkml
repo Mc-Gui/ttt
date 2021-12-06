@@ -137,4 +137,9 @@ view: users {
     hidden: no
     sql: ${age} ;;
   }
+
+  measure: sexo {
+    type: count
+    filters: [gender: "f"]
+  }
 }

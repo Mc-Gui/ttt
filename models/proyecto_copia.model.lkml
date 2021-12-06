@@ -49,6 +49,7 @@ explore: order_items {
     relationship: many_to_one
   }
 
+
   join: inventory_items {
     type: left_outer
     sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
@@ -66,6 +67,12 @@ explore: order_items {
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
     relationship: many_to_one
   }
+
+ always_filter: {
+   filters: [orders.statusss: "complete"]
+  }
+
+ # sql_always_where: ${orders.statusss}:"complete" ;;
 }
 
 explore: orders {
@@ -82,6 +89,8 @@ explore: product_facts {
     sql_on: ${product_facts.product_id} = ${products.id} ;;
     relationship: many_to_one
   }
+
+
 }
 
 # To create more sophisticated Explores that involve multiple views, you can use the join parameter.
@@ -93,6 +102,5 @@ explore: products {}
 explore: users {}
 
 explore: test1{}
-explore:  test2{}
-explore: eje2 {}
+explore: test2{}
 explore: filtrofiltro {}

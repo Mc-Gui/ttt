@@ -20,7 +20,41 @@ view: products {
   dimension: brand {
     type: string
     sql: ${TABLE}.brand ;;
+    suggest_dimension: brand2
+
+
   }
+
+  dimension: brand3 {
+
+    sql: ${TABLE}.brand ;;
+
+    html:
+
+    {% if value == '2EROS' %}
+
+      <p style="color: black; background-color: lightblue; font-size:100%; text-align:center">{{ rendered_value }}</p>
+
+
+    {% else %}
+
+      <p style="color: black; background-color: orange; font-size:100%; text-align:center">{{ rendered_value }}</p>
+
+    {% endif %}
+
+;;
+
+    }
+
+
+  dimension: brand2 {
+    type: string
+    hidden: yes
+    sql: CONCAT ( ${TABLE}.id,${TABLE}.brand) ;;
+
+
+  }#para filtrar por dos campos
+
 
   dimension: category {
     type: string
