@@ -10,12 +10,12 @@ view: test2 {
        ;;
   }
 
-  measure: count {
+ measure: count {
     type: count
     drill_fields: [detail*]
   }
 
-  dimension: email {
+  dimension: _email {
     type: string
     sql: ${TABLE}.email ;;
   }
@@ -31,6 +31,6 @@ view: test2 {
   }
 
   set: detail {
-    fields: [email, created_at_time, row_number]
+    fields: [_email, created_at_time, row_number]
   }
 }

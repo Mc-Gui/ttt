@@ -37,7 +37,7 @@ persist_with: datagroup_probandoando
 explore: inventory_items {
   join: products {
     type: left_outer
-    sql_on: ${inventory_items.product_id} = ${products.id} ;;
+    foreign_key:inventory_items.product_id
     relationship: many_to_one
   }
 }
@@ -62,6 +62,12 @@ explore: order_items {
     relationship: many_to_one
   }
 
+  join: sql_runner_query2 {
+    type: inner
+    sql_on: ${orders.user_id}=${sql_runner_query2.iddelquery} ;;
+    relationship: one_to_one
+  }
+
   join: products {
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
@@ -73,7 +79,14 @@ explore: order_items {
   #}
 
   sql_always_where: ${orders.statusss}='complete' ;;
+
+  #conditionally_filter: {
+   # filters: [orders.statusss: "complete"]
+    #unless: [products.brand]
+  #}
+
 }
+
 
 explore: orders {
   join: users {
