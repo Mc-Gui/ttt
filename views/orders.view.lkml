@@ -3,7 +3,8 @@ view: orders {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: public.orders ;;
-  drill_fields: [id]
+  drill_fields:[source*, id]
+
   # This primary key is the unique key for this table in the underlying database.
   # You need to define a primary key in a view in order to join to other views.
 
@@ -25,10 +26,80 @@ view: orders {
       week,
       month,
       quarter,
-      year
+      year,day_of_week
     ]
     sql: ${TABLE}.created_at ;;
   }
+
+measure:maximafecha
+{
+  type: date
+  sql: MAX(${created_date}) ;;
+  convert_tz: no
+
+}
+
+measure: diffecha
+{
+  type: number
+  sql: datediff(day,${maximafecha},GETDATE()) ;;
+}
+
+
+  #crea un picker
+  parameter: timeframe_picker {
+    label: "Date Granularity"
+    type: string
+    allowed_value: { value: "Date" label: "To aggregate by Event Date"}
+    allowed_value: { value: "Quarter" }
+    allowed_value: { value: "Month" }
+    allowed_value: { value: "Year" }
+    default_value: "Date"
+  }
+
+dimension: fechadinamica {
+  label_from_parameter: timeframe_picker
+    sql:
+        CASE
+          WHEN {% parameter timeframe_picker %} = 'Date' THEN TO_CHAR(${created_date}, 'YYYY/MM/DD')
+          WHEN {% parameter timeframe_picker %} = 'Month' THEN ${created_month}
+          WHEN {% parameter timeframe_picker %} = 'Quarter' THEN ${created_quarter}
+          WHEN {% parameter timeframe_picker %} = 'Year' THEN TO_CHAR(${created_year},'9999')
+          ELSE NULL
+        END ;;
+}
+
+
+
+  #crea un picker
+  parameter: dimension_picker {
+    type: string
+    allowed_value: { value: "statusss" }
+    allowed_value: { value: "traffic_source" }
+    allowed_value: { value: "user_id" }
+    default_value: "Date"
+  }
+
+  dimension: dimensiondinamica {
+    label_from_parameter: dimension_picker
+    sql:
+        CASE
+          WHEN {% parameter dimension_picker %} = 'statusss' THEN ${statusss}
+          WHEN {% parameter dimension_picker %} = 'traffic_source' THEN ${traffic_source}
+          WHEN {% parameter dimension_picker %} = 'user_id' THEN TO_CHAR(${user_id},'9999')
+          ELSE NULL
+        END ;;
+  }
+
+
+#esto aplica un filtro en un otro campo
+filter: esteesunfiltro {
+  type: string
+  sql: {% condition esteesunfiltro %}  {% endcondition %} ;;
+}
+
+
+
 
   # Here's what a typical dimension looks like in LookML.
   # A dimension is a groupable field that can be used to filter query results.
@@ -37,6 +108,7 @@ view: orders {
   dimension: statusss {
     type: string
     sql: ${TABLE}.status ;;
+    drill_fields: [id, users.id, users.first_name]
   }
 
   dimension: traffic_source {
@@ -59,6 +131,13 @@ view: orders {
     type: count
     drill_fields: [id, users.id, users.first_name, users.last_name, order_items.count]
   }
+
+  set: source {
+
+    fields: [traffic_source, created_date]
+
+  }
+
 }
 
 # These sum and average measures are hidden by default.

@@ -17,6 +17,11 @@ view: users {
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Age" in Explore.
 
+  dimension: sino {
+    type: yesno
+    sql: ${first_name} like '%art'  ;;
+}
+
   dimension: age {
     type: number
     sql: ${TABLE}.age ;;
@@ -57,9 +62,17 @@ view: users {
 
   dimension: first_name {
     type: string
+    case_sensitive: yes
     sql: ${TABLE}.first_name ;;
   }
 
+
+dimension: fija2 {
+  type: number
+  sql:  '1' AS label
+UNION SELECT '2'
+UNION SELECT '3';;
+}
   dimension: gender {
     type: string
     sql: ${TABLE}.gender ;;
@@ -79,6 +92,11 @@ view: users {
     type: string
     sql: ${TABLE}.traffic_source ;;
   }
+
+  dimension: sinodim {
+    type: yesno
+    sql: ${TABLE}.gender like 'f' ;;
+}
 
   dimension: zip {
     type: zipcode
@@ -120,7 +138,7 @@ view: users {
 
   measure: count {
     type: count
-    drill_fields: [id, first_name, last_name, orders.count]
+    #drill_fields: [id, first_name, last_name, orders.count]
   }
 
   # These sum and average measures are hidden by default.
@@ -141,5 +159,15 @@ view: users {
   measure: sexo {
     type: count
     filters: [gender: "f"]
+  }
+
+
+
+  measure: sumamal {
+    type:number
+    hidden: yes
+    sql: sum(${age}) ;;
+
+
   }
 }

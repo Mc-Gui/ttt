@@ -7,10 +7,41 @@ view: inventory_items {
   # This primary key is the unique key for this table in the underlying database.
   # You need to define a primary key in a view in order to join to other views.
 
+
   dimension: id {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+  }
+
+filter: filtrodefecha {
+  type: date
+
+}
+
+
+  dimension: liquidObject {
+    type: string
+    link: {
+      url: " https://help.looker.com/hc/en-us/articles/360023722974-A-Simple-Explanation-of-Symmetric-Aggregates-or-Why-On-Earth-Does-My-SQL-Look-Like-That-"
+    }
+
+    #sql: '{{ link}}' ;;<------no supe
+    #sql: '{{_model._name}}' ;;  #----> imprime el nombre del proyecto
+    #sql:'{{_field._name}}'  ;;
+    #sql: '{{_query._query_timezone}}' ;;
+    #sql:'{{inventory_items._in_query}}'---->este no jalo tal cual por que noes una dimension tipica/mal definida
+    #sql: {% if order_items.fecha._parameter_value==null%}'yes'{%endif%} ;;
+  }
+
+  dimension: liquidTag {
+    # sql:{%if _model._name!="hol"%} 'diferente' {% endif %};;
+    #sql: {%if products._in_query!= true%} 'notrue'{% endif %};;
+    #sql: {%date_start order_items.fecha %};;#--->si se le pone' imprime como cadena :/ ppp lo dice la documentacion
+    #sql: {%date_start created_date %};;---->este no jalo
+
+
+
   }
 
   # Here's what a typical dimension looks like in LookML.

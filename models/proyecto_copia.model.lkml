@@ -68,6 +68,12 @@ explore: order_items {
     relationship: one_to_one
   }
 
+  join: persistente {
+    type: inner
+    sql_on: ${orders.user_id}=${sql_runner_query2.iddelquery} ;;
+    relationship: one_to_one
+  }
+
   join: products {
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
@@ -78,7 +84,7 @@ explore: order_items {
  #  filters: [orders.statusss: "complete"]
   #}
 
-  sql_always_where: ${orders.statusss}='complete' ;;
+#  sql_always_where: ${orders.statusss}='complete' ;;
 
   #conditionally_filter: {
    # filters: [orders.statusss: "complete"]
@@ -117,3 +123,4 @@ explore: users {}
 explore: test1{}
 explore: test2{}
 explore: filtrofiltro {}
+explore: nueva {}

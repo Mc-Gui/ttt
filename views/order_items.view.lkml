@@ -43,8 +43,35 @@ view: order_items {
       quarter,
       year
     ]
+  #  datatype: date
     sql: ${TABLE}.returned_at ;;
   }
+
+parameter: fecha {
+  type: date
+
+}
+
+
+dimension: usandoparametrodate {
+  sql: CASE
+      WHEN cast({%parameter fecha %}as date)=${returned_date}
+                --{%condition fecha%}${returned_date}{% endcondition %}
+      THEN
+      ELSE 'otro'
+    END;;
+}
+
+
+
+dimension: comparan {
+sql:  {% if DATE(fecha._parameter_value) == ${returned_date}%}
+'1'
+{% else %}
+'0'
+{% endif %};;
+}
+
 
   dimension: sale_price {
     type: number

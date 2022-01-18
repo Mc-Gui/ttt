@@ -18,11 +18,45 @@ view: products {
   # This dimension will be called "Brand" in Explore.
 
   dimension: brand {
+
     type: string
+
+    drill_fields: [brand,category]
+
     sql: ${TABLE}.brand ;;
-    suggest_dimension: brand2
 
 
+   ## suggest_dimension: brand2  para que las saugerencias vengan de otra dimension
+    #link: {
+      #label: "primer liquid"
+      #url: "http://www.google.com/search?q={{ value }}"#es para llevar a una pagina
+
+      #drill to a dashboard
+      #url: "https://dcltraining.dev.looker.com/dashboards/526?Sold%20Date=2021%2F12%2F02%20to%202021%2F12%2F03&Cost=%5B0,100%5D&Brand3={{value}}"
+
+      #drill to a explorer
+      #url: "https://dcltraining.dev.looker.com/explore/proyecto_copia/order_items?fields=orders.count,products.brand&f[products.brand]={{value}}"
+
+      #Adding Custom Limits (up to 5000)
+      #url: "{{link}}&limit=3"
+
+
+      #}
+
+      #usando html
+
+      #drill to a dashboard
+      #html:  <a "https://dcltraining.dev.looker.com/dashboards/526?Sold%20Date=2021%2F12%2F02%20to%202021%2F12%2F03&Cost=%5B0,100%5D&Brand3={{value}}">{{ value }}</a> ;;
+    # html:<a href:{{linked_value}}></a>  ;;
+      html: <a href="#drillmenu" target="_self">
+      {% if value > 100 %}
+      <font color="darkgreen">{{ rendered_value }}</font>
+    {% elsif value > 50 %}
+      <font color="goldenrod">{{ rendered_value }}</font>
+    {% else %}
+      <font color="darkred">{{ rendered_value }}</font>
+    {% endif %}
+    </a>;;
   }
 
   dimension: brand3 {
