@@ -60,13 +60,4 @@ view: orders {
     drill_fields: [id, users.id, users.first_name, users.last_name, order_items.count]
   }
 }
-}
 
-# These sum and average measures are hidden by default.
-# If you want them to show up in your explore, remove hidden: yes.
-# These sum and average measures are hidden by default.
-# If you want them to show up in your explore, remove hidden: yes.
-# These sum and average measures are hidden by default.
-# If you want them to show up in your explore, remove hidden: yes.
-# These sum and average measures are hidden by default.
-# If you want them to show up in your explore, remove hidden: yes.
