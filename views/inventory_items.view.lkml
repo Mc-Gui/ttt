@@ -19,6 +19,11 @@ filter: filtrodefecha {
 
 }
 
+  dimension: afectado{
+
+    sql: {% if filtrodefecha==null%}'yes'{%endif%} ;;
+  }
+
 
   dimension: liquidObject {
     type: string

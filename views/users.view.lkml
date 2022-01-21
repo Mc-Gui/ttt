@@ -67,12 +67,7 @@ view: users {
   }
 
 
-dimension: fija2 {
-  type: number
-  sql:  '1' AS label
-UNION SELECT '2'
-UNION SELECT '3';;
-}
+
   dimension: gender {
     type: string
     sql: ${TABLE}.gender ;;

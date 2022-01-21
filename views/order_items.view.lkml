@@ -47,30 +47,36 @@ view: order_items {
     sql: ${TABLE}.returned_at ;;
   }
 
-parameter: fecha {
+parameter: parametrofec {
   type: date
-
 }
 
 
+parameter: anio {
+  type: string
+  allowed_value: {value:"2001"}
+  allowed_value: {value:"2002"}
+}
+
 dimension: usandoparametrodate {
+  label_from_parameter:anio
   sql: CASE
-      WHEN cast({%parameter fecha %}as date)=${returned_date}
-                --{%condition fecha%}${returned_date}{% endcondition %}
+      WHEN cast({%parameter parametrofec %}as date)=${returned_date}
       THEN
+      'si'
       ELSE 'otro'
     END;;
 }
 
+# --{%condition parametrofec%}${returned_date}{% endcondition %}
 
-
-dimension: comparan {
-sql:  {% if DATE(fecha._parameter_value) == ${returned_date}%}
-'1'
-{% else %}
-'0'
-{% endif %};;
-}
+#dimension: comparan {
+#sql:  {% if DATE(parametro_echa._parameter_value) == ${returned_date}%}
+#'1'
+#{% else %}
+#'0'
+#{% endif %};;
+#}
 
 
   dimension: sale_price {
