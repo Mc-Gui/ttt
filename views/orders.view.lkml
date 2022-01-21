@@ -139,12 +139,3 @@ filter: esteesunfiltro {
   }
 
 }
-# These sum and average measures are hidden by default.
-# If you want them to show up in your explore, remove hidden: yes.
-# These sum and average measures are hidden by default.
-# If you want them to show up in your explore, remove hidden: yes.
-# These sum and average measures are hidden by default.
-# If you want them to show up in your explore, remove hidden: yes.
-
-# These sum and average measures are hidden by default.
-# If you want them to show up in your explore, remove hidden: yes.
