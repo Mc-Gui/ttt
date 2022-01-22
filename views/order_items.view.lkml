@@ -58,6 +58,8 @@ parameter: anio {
   allowed_value: {value:"2002"}
 }
 
+
+
 dimension: usandoparametrodate {
   label_from_parameter:anio
   sql: CASE

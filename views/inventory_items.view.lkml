@@ -36,7 +36,7 @@ filter: filtrodefecha {
     #sql:'{{_field._name}}'  ;;
     #sql: '{{_query._query_timezone}}' ;;
     #sql:'{{inventory_items._in_query}}'---->este no jalo tal cual por que noes una dimension tipica/mal definida
-    #sql: {% if order_items.fecha._parameter_value==null%}'yes'{%endif%} ;;
+    sql: {% if "order_items".parametrofec._parameter_value==null%}'yes'{%endif%} ;;
   }
 
   dimension: liquidTag {
