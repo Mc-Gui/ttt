@@ -20,4 +20,4 @@ view: filtrofiltro {
       sql: ${TABLE}.region ;;
     }
  }
-#probando git 2
+#probando git 3
