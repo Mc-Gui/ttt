@@ -124,4 +124,10 @@ dimension: usandoparametrodate {
     sql: ${sale_price} ;;
     value_format: "$0.00"
   }
+
+#esto esta mal una medida de agregacion no puede referenciar a otra
+  #measure: conteofiltrado {
+   # type: sum
+    #filters: [total_revenue:  ">950"]
+  #}
 }

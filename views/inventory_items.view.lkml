@@ -19,6 +19,14 @@ filter: filtrodefecha {
 
 }
 
+parameter: parametro {
+  type: string
+  default_value: "xxxx"
+  allowed_value: {label:"valor1"
+                  value:"estoesvalido"}
+
+}
+
   dimension: afectado{
 
     sql: {% if filtrodefecha==null%}'yes'{%endif%} ;;
@@ -35,23 +43,21 @@ filter: filtrodefecha {
     #sql: '{{_model._name}}' ;;  #----> imprime el nombre del proyecto
     #sql:'{{_field._name}}'  ;;
     #sql: '{{_query._query_timezone}}' ;;
-    #sql:'{{inventory_items._in_query}}'---->este no jalo tal cual por que noes una dimension tipica/mal definida
-    sql: {% if "order_items".parametrofec._parameter_value==null%}'yes'{%endif%} ;;
+    #sql:'{{inventory_items._in_query}}'---->este no jalo tal cual por que regresa un booleano,no es una dimension tipica/mal definida
   }
 
   dimension: liquidTag {
     # sql:{%if _model._name!="hol"%} 'diferente' {% endif %};;
     #sql: {%if products._in_query!= true%} 'notrue'{% endif %};;
-    #sql: {%date_start order_items.fecha %};;#--->si se le pone' imprime como cadena :/ ppp lo dice la documentacion
-    #sql: {%date_start created_date %};;---->este no jalo
+    #sql: {%date_start order_items.fecha %};;#--->si se le pone' imprime como cadena, se utiliza como tag no como object lo dice la documentacion
+    sql: {%date_start filtrodefecha %};;
+    #sql: {%date_start created_date %};;---->este no jalo (tiene q ser un filtro)
+    #sql: {% if "order_items".parametrofec._parameter_value==null%}'yes'{%endif%} ;;
 
 
 
   }
 
-  # Here's what a typical dimension looks like in LookML.
-  # A dimension is a groupable field that can be used to filter query results.
-  # This dimension will be called "Cost" in Explore.
 
   dimension: cost {
     type: number
@@ -79,6 +85,7 @@ filter: filtrodefecha {
     type: number
     # hidden: yes
     sql: ${TABLE}.product_id ;;
+    drill_fields: [cost]
   }
 
   dimension_group: sold {

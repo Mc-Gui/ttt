@@ -1,5 +1,5 @@
-- dashboard: temas6
-  title: temas6
+- dashboard: dashboardname
+  title: auserwillseethisname
   layout: newspaper
   preferred_viewer: dashboards-next
   elements:
