@@ -29,11 +29,11 @@ view: products {
     link: {
      # url:"https:// {{value}}"
       #label: "primer liquid"
-      url: "https://revistaquem.globo.com/QUEM-News/noticia/2021/08/namorada-da-thiago-oliveira-comenta-brincadeira-de-ana-maria-braga-estou-vendo.html"
+      #url: "https://revistaquem.globo.com/QUEM-News/noticia/2021/08/namorada-da-thiago-oliveira-comenta-brincadeira-de-ana-maria-braga-estou-vendo.html"
       #url: "http://www.google.com/search?q={{ value }}"#es para llevar a una pagina
 
      # drill to a dashboard
-      #url: "https://dcltraining.dev.looker.com/dashboards/526?Sold%20Date=2021%2F12%2F02%20to%202021%2F12%2F03&Cost=%5B0,100%5D&Brand3={{value}}"
+      url: "https://dcltraining.dev.looker.com/dashboards/526?Sold%20Date=2021%2F12%2F02%20to%202021%2F12%2F03&Cost=%5B0,100%5D&Brand3={{value}}"
 
       #drill to a explorer
       #url: "https://dcltraining.dev.looker.com/explore/proyecto_copia/order_items?fields=orders.count,products.brand&f[products.brand]={{value}}"
