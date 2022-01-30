@@ -13,5 +13,4 @@ explore: products {}
 explore: users {}
 
 explore: test1{}
-explore:  test2{}
 explore: filtrofiltro {}
