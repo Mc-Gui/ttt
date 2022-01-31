@@ -146,6 +146,6 @@ view: products {
     hidden: yes
     sql: ${retail_price} ;;
   }
-
+#cambio
 
   }
