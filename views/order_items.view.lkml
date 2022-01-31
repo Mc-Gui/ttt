@@ -1,5 +1,9 @@
+include: vistapaextender.view
+
 # The name of this view in Looker is "Order Items"
 view: order_items {
+  extends: [vistapaextender]
+
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: public.order_items ;;

@@ -3,11 +3,14 @@ connection: "thelook"
 
 # include all the views
 include: "/views/**/*.view"
-include: "/**/**/*.view"
-include: "dashboardcreadodesdelookml.dashboard.lookml"
-include: "/**/*.dashboard"
+#include: "/**/**/*.view"
+#include: "dashboardcreadodesdelookml.dashboard.lookml"
+#include: "/**/*.dashboard"
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.
+
+include: "/explores/explorpaextender.explore.lkml"
+
 
 datagroup: proyecto_copia_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -63,18 +66,6 @@ explore: order_items {
     relationship: many_to_one
   }
 
-  join: sql_runner_query2 {
-    type: inner
-    sql_on: ${orders.user_id}=${sql_runner_query2.iddelquery} ;;
-    relationship: one_to_one
-  }
-
-  join: persistente {
-    type: inner
-    sql_on: ${orders.user_id}=${sql_runner_query2.iddelquery} ;;
-    relationship: one_to_one
-  }
-
   join: products {
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
@@ -110,7 +101,14 @@ explore: product_facts {
     relationship: many_to_one
   }
 
+}
 
+explore: sqlderivada1 {
+  join: users {
+    type: full_outer
+    relationship: many_to_one
+    sql_on: ${sqlderivada1.users_first_name}=${users.first_name} ;;
+  }
 }
 
 # To create more sophisticated Explores that involve multiple views, you can use the join parameter.

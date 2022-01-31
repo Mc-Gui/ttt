@@ -1,5 +1,9 @@
-# The name of this view in Looker is "Inventory Items"
+include: vistapaextender.view
 view: inventory_items {
+  extends: [vistapaextender]
+
+
+
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: public.inventory_items ;;
